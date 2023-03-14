@@ -3,6 +3,8 @@ package com.example.au_demo_live;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,13 +33,23 @@ public class LinkedListTest {
 
     @Test
     @DisplayName("Given index greater than the size of the list, getElement()")
-    void testGetElement_shouldThrowsExceptionOnINdexGreaterThanSize(){
+    void testGetElement_shouldThrowsExceptionOnIndexGreaterThanSize(){
 //        final  var list = new LinkedList<Integer>();
         list.addElement(10); //index 0
         list.addElement(20); //index 1
         final var exception = assertThrows(RuntimeException.class,()->list.getElement(2));
         assertEquals("Index greater than the size of the list", exception.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints ={-1,-2,-3,Integer.MAX_VALUE})
+    @DisplayName("Given the index is negative, getElement() should throw RuntimeException")
+    public  void theGetElement_shouldThrowExceptionOnNegativeIndexWithDifferentParameter(){
+//        final var list = new LinkedList<Integer>();
+        assertThrows(RuntimeException.class, ()-> list.getElement(-1));
+    }
+
+
 }
 
 

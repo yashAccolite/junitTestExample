@@ -23,6 +23,8 @@ public class LinkedList<T> {
     }
 
     public void addElement(T element){
+        if(element==null) throw new RuntimeException("Entered Element is null");
+
         final var tempNode = new Node<T>();
         tempNode.setValue(element);
 
@@ -34,6 +36,23 @@ public class LinkedList<T> {
         while(iteratorNode.getNextNode() != null){
             iteratorNode = iteratorNode.getNextNode();
         }
+    }
+
+    public void addElementAt(T element, Integer position){
+        var iteratorNode = headNode;
+        if(iteratorNode==null) throw new RuntimeException("Linked list is empty!!!");
+        try{
+            final var tempNode = new Node<T>();
+            tempNode.setValue(element);
+
+            for(Integer i =0;i<position;i++){
+
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+
     }
 }
 
